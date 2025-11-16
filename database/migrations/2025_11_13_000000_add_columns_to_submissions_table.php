@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('submissions', function (Blueprint $table) {
-            // Add columns if they don't exist
             if (!Schema::hasColumn('submissions', 'notes')) {
                 $table->text('notes')->nullable()->after('status_id');
             }

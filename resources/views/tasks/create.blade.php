@@ -12,7 +12,6 @@
             @csrf
             <input type="hidden" name="todo_list_id" value="{{ $todoList->id }}">
 
-            {{-- Judul --}}
             <div>
                 <label class="flex items-center gap-2 font-semibold text-gray-700 dark:text-gray-200 mb-2">
                     @svg('heroicon-o-pencil-square', 'w-5 h-5 text-blue-600')
@@ -26,7 +25,6 @@
                 @enderror
             </div>
 
-            {{-- Deskripsi singkat --}}
             <div>
                 <label class="flex items-center gap-2 font-semibold text-gray-700 dark:text-gray-200 mb-2">
                     @svg('heroicon-o-chat-bubble-bottom-center-text', 'w-5 h-5 text-blue-600')
@@ -40,7 +38,6 @@
                 @enderror
             </div>
 
-            {{-- Deskripsi panjang --}}
             <div>
                 <label class="flex items-center gap-2 font-semibold text-gray-700 dark:text-gray-200 mb-2">
                     @svg('heroicon-o-document-text', 'w-5 h-5 text-blue-600')
@@ -54,7 +51,6 @@
                 @enderror
             </div>
 
-            {{-- Deadline --}}
             <div>
                 <label class="flex items-center gap-2 font-semibold text-gray-700 dark:text-gray-200 mb-2">
                     @svg('heroicon-o-calendar-days', 'w-5 h-5 text-blue-600')
@@ -68,7 +64,6 @@
                 @enderror
             </div>
 
-            {{-- Level / Prioritas --}}
             <div>
                 <label class="flex items-center gap-2 font-semibold text-gray-700 dark:text-gray-200 mb-2">
                     @svg('heroicon-o-signal', 'w-5 h-5 text-blue-600')
@@ -88,7 +83,6 @@
                 @enderror
             </div>
 
-            {{-- Upload File / Gambar --}}
             <div>
                 <label class="flex items-center gap-2 font-semibold text-gray-700 dark:text-gray-200 mb-2">
                     @svg('heroicon-o-photo', 'w-5 h-5 text-blue-600')
@@ -114,7 +108,6 @@
                 @enderror
             </div>
 
-            {{-- Jumlah siswa --}}
             <div>
                 <label class="flex items-center gap-2 font-semibold text-gray-700 dark:text-gray-200 mb-2">
                     @svg('heroicon-o-user-group', 'w-5 h-5 text-blue-600')
@@ -128,7 +121,6 @@
                 @enderror
             </div>
 
-            {{-- Tombol --}}
             <div class="flex justify-end gap-3 pt-6">
                 <a href="{{ route('todolist.show', $todoList->id) }}"
                     class="px-5 py-2.5 rounded-lg bg-gray-500 hover:bg-gray-600 text-white font-medium transition flex items-center gap-1">

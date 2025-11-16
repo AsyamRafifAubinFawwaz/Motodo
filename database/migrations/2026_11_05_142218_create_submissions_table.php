@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('task_id')->constrained('tasks')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // siswa
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
             $table->string('file_path')->nullable();
             $table->foreignId('status_id')->nullable()->constrained('statuses')->nullOnDelete();
-            $table->text('notes')->nullable(); // siswa punya notes
-            $table->text('teacher_notes')->nullable(); // guru punya notes
+            $table->text('notes')->nullable();
+            $table->text('teacher_notes')->nullable();
             $table->timestamp('submitted_at')->nullable();
             $table->timestamps();
         });

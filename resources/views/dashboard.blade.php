@@ -6,9 +6,7 @@
             class="relative flex items-center justify-between rounded-3xl overflow-hidden shadow-2xl border border-white/30
             bg-gradient-to-r from-[#0064E0] to-[#0082FB] text-white p-6 md:p-10 mb-10">
 
-            {{-- Text Section --}}
             <div class="relative z-10 max-w-lg">
-                {{-- Date/Time Tag --}}
                 <div class="flex items-center gap-2 mb-3 text-sm font-medium bg-white/30 backdrop-blur-md px-3 py-1.5 rounded-full text-white/90 w-fit">
                     {{ svg('heroicon-o-calendar-days', 'w-5 h-5') }}
                     <span>{{ now()->format('d M Y, H:i') }}</span>
