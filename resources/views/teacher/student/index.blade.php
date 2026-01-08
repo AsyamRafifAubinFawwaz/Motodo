@@ -79,7 +79,7 @@
                                                 <thead class="bg-[#0082FB] text-white uppercase text-xs">
                                                     <tr>
                                                         <th class="px-4 py-3">No</th>
-                                                        <th class="px-4 py-3">Nama Siswa</th>
+                                                        <th class="px-4 py-3">Nama </th>
                                                         <th class="px-4 py-3">Catatan</th>
                                                         <th class="px-4 py-3">Status</th>
                                                         <th class="px-4 py-3 text-center">File</th>
@@ -151,9 +151,9 @@
             </div>
         @empty
             <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-10 text-center">
-                <div class="text-6xl mb-4">✅</div>
+                <div class="text-6xl mb-4"></div>
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Belum ada pengumpulan tugas</h3>
-                <p class="text-gray-600 dark:text-gray-400">Belum ada siswa yang mengumpulkan tugas.</p>
+                <p class="text-gray-600 dark:text-gray-400">Belum ada  yang mengumpulkan tugas.</p>
             </div>
         @endforelse
     </div>

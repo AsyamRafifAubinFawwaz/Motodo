@@ -8,7 +8,7 @@
             <div class="relative z-10">
                 <h1 class="text-4xl font-black mb-2 tracking-tight">Daftar Tugas Saya</h1>
                 <p class="text-white dark:text-gray-400 text-md">
-                    Kelola dan kerjakan semua tugas yang diberikan oleh guru.
+                    Kelola dan kerjakan semua tugas yang diberikan.
                 </p>
             </div>
             <div class="absolute right-0 bottom-0 opacity-20 pointer-events-none select-none">
@@ -115,7 +115,7 @@
                     class="bg-white dark:bg-[#1E293B] rounded-2xl p-10 text-center border border-gray-200 dark:border-gray-700/50">
                     <div class="text-6xl mb-4">📚</div>
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Belum ada tugas</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Guru Anda akan memberikan tugas segera. Silakan cek kembali
+                    <p class="text-gray-600 dark:text-gray-400">Tugas Anda akan diberikan tugas segera. Silakan cek kembali
                         nanti.</p>
                 </div>
             @endforelse

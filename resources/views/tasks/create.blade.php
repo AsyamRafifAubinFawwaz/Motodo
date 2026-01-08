@@ -114,7 +114,7 @@
             <div>
                 <label class="flex items-center gap-2 font-semibold text-gray-700 dark:text-gray-200 mb-2">
                     @svg('heroicon-o-user-group', 'w-5 h-5 text-blue-600')
-                    Jumlah Siswa yang Ditugaskan
+                    Jumlah Orang yang Ditugaskan
                 </label>
                 <input type="number" name="assigned_user_count"
                     class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 w-full text-gray-900 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition @error('assigned_user_count') border-red-500 @enderror"

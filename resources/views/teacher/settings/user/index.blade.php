@@ -6,8 +6,8 @@
     <!-- Header -->
     <div class="relative mb-6 rounded-3xl overflow-hidden shadow-xl border border-white/20 bg-gradient-to-r from-[#0064E0] to-[#0082FB] text-white p-8">
         <div class="relative z-10">
-            <h1 class="text-3xl font-bold mb-2">Daftar Siswa</h1>
-            <p class="text-white/80 text-sm">Kelola data siswa dan role masing-masing</p>
+            <h1 class="text-3xl font-bold mb-2">Daftar Orang</h1>
+            <p class="text-white/80 text-sm">Kelola data user dan role masing-masing</p>
         </div>
         <div class="absolute right-0 bottom-0 opacity-20 pointer-events-none select-none">
             {{ svg('hugeicons-book-02', 'w-48 h-48') }}

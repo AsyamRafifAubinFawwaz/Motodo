@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function updateProfile(Request $request)
     {
-        $user = auth()->user(); 
+        $user = auth()->user();
 
         $request->validate([
             'name' => 'sometimes|string|max:255',
@@ -118,4 +118,32 @@ public function destroy(User $user)
     $user->delete();
     return redirect()->route('teacher.settings.users.index')->with('success', 'User berhasil dihapus!');
 }
+public function editSelf()
+{
+    $user = auth()->user();
+    return view('profile.edit', compact('user'));
+}
+
+public function updateSelf(Request $request)
+{
+    $user = auth()->user();
+
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,' . $user->id,
+        'password' => 'nullable|string|min:6|confirmed',
+    ]);
+
+    $user->name = $request->name;
+    $user->email = $request->email;
+
+    if ($request->filled('password')) {
+        $user->password = Hash::make($request->password);
+    }
+
+    $user->save();
+
+    return redirect()->route('profile.edit')->with('success', 'Profil berhasil diperbarui!');
+}
+
 }

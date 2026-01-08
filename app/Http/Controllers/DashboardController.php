@@ -18,55 +18,58 @@ class DashboardController extends Controller
         $roleName = optional($user->role)->name;
         $title = 'Dashboard';
 
-     if ($roleName === 'Admin') {
-    $userRoleId = DB::table('roles')->where('name', 'User')->value('id');
-    $jumlahSiswa = DB::table('users')->where('role_id', $userRoleId)->count();
-    $tugasDikirim = DB::table('submissions')->count();
-    $totalTugas = DB::table('tasks')->count();
+        if ($roleName === 'Admin') {
 
-    $statuses = DB::table('statuses')->pluck('id', 'name');
+            $userRoleId = DB::table('roles')->where('name', 'User')->value('id');
 
-    $chartRaw = DB::table('submissions')
-        ->selectRaw('MONTH(created_at) as bulan, status_id, COUNT(*) as total')
-        ->groupBy('bulan', 'status_id')
-        ->orderBy('bulan')
-        ->get();
+            $jumlahSiswa = DB::table('users')->where('role_id', $userRoleId)->count();
 
-    $bulanLabels = collect(range(1, 12))->map(fn($b) => date('M', mktime(0, 0, 0, $b, 10)));
+            $tugasDikirim = DB::table('submissions')->count();
 
-    $chartData = [];
-    foreach ($statuses as $statusName => $statusId) {
-        $data = [];
-        foreach (range(1, 12) as $bulan) {
-            $count = $chartRaw->where('status_id', $statusId)
-                ->where('bulan', $bulan)
-                ->first()
-                ->total ?? 0;
-            $data[] = $count;
-        }
-        $chartData[] = ['name' => $statusName, 'data' => $data];
-    }
-
-    return view('dashboard', compact(
-        'title',
-        'jumlahSiswa',
-        'tugasDikirim',
-        'totalTugas',
-        'bulanLabels',
-        'chartData'
-    ));
-}
-
-
-             if ($roleName === 'User') {
             $totalTugas = DB::table('tasks')->count();
 
-            // Get status IDs
+            $statuses = DB::table('statuses')->pluck('id', 'name');
+
+            $chartRaw = DB::table('submissions')
+                ->selectRaw('MONTH(created_at) as bulan, status_id, COUNT(*) as total')
+                ->groupBy('bulan', 'status_id')
+                ->orderBy('bulan')
+                ->get();
+
+            $bulanLabels = collect(range(1, 12))->map(fn($b) => date('M', mktime(0, 0, 0, $b, 10)));
+
+            $chartData = [];
+            foreach ($statuses as $statusName => $statusId) {
+                $data = [];
+                foreach (range(1, 12) as $bulan) {
+                    $count = $chartRaw->where('status_id', $statusId)
+                        ->where('bulan', $bulan)
+                        ->first()
+                        ->total ?? 0;
+                    $data[] = $count;
+                }
+                $chartData[] = ['name' => $statusName, 'data' => $data];
+            }
+
+            return view('dashboard', compact(
+                'title',
+                'jumlahSiswa',
+                'tugasDikirim',
+                'totalTugas',
+                'bulanLabels',
+                'chartData'
+            ));
+        }
+
+        if ($roleName === 'User') {
+
+            $totalTugas = DB::table('tasks')->count();
+
             $completedStatusId = DB::table('statuses')->where('name', 'Completed')->value('id');
             $inProgressStatusId = DB::table('statuses')->where('name', 'In Progress')->value('id');
             $pendingStatusId = DB::table('statuses')->where('name', 'Pending')->value('id');
 
-            // Count tugas by status
+            // Hitung tugas sesuai user_id
             $tugasSelesai = DB::table('submissions')
                 ->where('user_id', $user->id)
                 ->where('status_id', $completedStatusId)
@@ -79,7 +82,6 @@ class DashboardController extends Controller
 
             $belumDikerjakan = $totalTugas - ($tugasSelesai + $tugasMenunggu);
 
-            // Tugas Terbaru
             $tugasTerbaru = DB::table('tasks')
                 ->leftJoin('submissions', function ($join) use ($user) {
                     $join->on('tasks.id', '=', 'submissions.task_id')
@@ -95,15 +97,12 @@ class DashboardController extends Controller
                 ->limit(5)
                 ->get();
 
-            // Chart Data - Get submissions by month and status for this user
             $chartRaw = DB::table('submissions')
                 ->selectRaw('MONTH(created_at) as bulan, status_id, COUNT(*) as total')
-                ->where('user_id', $user->id)
                 ->groupBy('bulan', 'status_id')
                 ->orderBy('bulan')
                 ->get();
 
-            // For tasks without submission (Pending)
             $allTasksMonths = DB::table('tasks')
                 ->selectRaw('MONTH(created_at) as bulan, COUNT(*) as total')
                 ->groupBy('bulan')
@@ -111,16 +110,13 @@ class DashboardController extends Controller
 
             $submittedTasksMonths = DB::table('submissions')
                 ->selectRaw('MONTH(created_at) as bulan, COUNT(*) as total')
-                ->where('user_id', $user->id)
                 ->groupBy('bulan')
                 ->get();
 
             $bulanLabels = collect(range(1, 12))->map(fn($b) => date('M', mktime(0, 0, 0, $b, 10)));
 
-            // Build chart data for each status
             $chartData = [];
 
-            // Completed
             $completedData = [];
             foreach (range(1, 12) as $bulan) {
                 $count = $chartRaw->where('status_id', $completedStatusId)
@@ -131,7 +127,6 @@ class DashboardController extends Controller
             }
             $chartData[] = ['name' => 'Completed', 'data' => $completedData];
 
-            // In Progress
             $inProgressData = [];
             foreach (range(1, 12) as $bulan) {
                 $count = $chartRaw->where('status_id', $inProgressStatusId)
@@ -142,7 +137,6 @@ class DashboardController extends Controller
             }
             $chartData[] = ['name' => 'In Progress', 'data' => $inProgressData];
 
-            // Pending (tasks not submitted)
             $pendingData = [];
             foreach (range(1, 12) as $bulan) {
                 $allTasks = $allTasksMonths->where('bulan', $bulan)->first()->total ?? 0;
@@ -165,4 +159,3 @@ class DashboardController extends Controller
         return redirect()->back()->with('error', 'Role tidak dikenali.');
     }
 }
-

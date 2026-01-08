@@ -121,11 +121,10 @@
             @enderror
         </div>
 
-        {{-- Jumlah siswa --}}
         <div>
             <label class="flex items-center gap-2 font-semibold text-gray-700 dark:text-gray-200 mb-2">
                 @svg('heroicon-o-user-group','w-5 h-5 text-blue-600')
-                Jumlah Siswa yang Ditugaskan
+                Jumlah Orang yang Ditugaskan
             </label>
 
             <input type="number" min="0" name="assigned_user_count"

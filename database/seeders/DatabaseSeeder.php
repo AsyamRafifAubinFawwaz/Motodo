@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
      public function run(): void
     {
         // Ambil role_id berdasarkan nama role
-        // $guruRoleId = DB::table('roles')->where('name', 'Admin')->value('id');
-        $siswaRoleId = DB::table('roles')->where('name', 'User')->value('id');
+        $guruRoleId = DB::table('roles')->where('name', 'Admin')->value('id');
+        // $siswaRoleId = DB::table('roles')->where('name', 'User')->value('id');
 
         // Buat user guru
         // User::updateOrCreate(
@@ -33,11 +33,11 @@ class DatabaseSeeder extends Seeder
 
         // Buat user siswa
         User::updateOrCreate(
-            ['email' => 'doni@gmail.com'],
+            ['email' => 'guru@gmail.com'],
             [
-                'name' => 'doni',
-                'password' => Hash::make('siswaadminrawr'),
-                'role_id' => $siswaRoleId,
+                'name' => 'guru',
+                'password' => Hash::make('123456'),
+                'role_id' => $guruRoleId,
             ]
         );
     }

@@ -2,7 +2,8 @@
 
 @section('content')
     <section class="p-6 mt-2">
-        <div class="relative mb-4 rounded-3xl overflow-hidden shadow-xl border border-white/20 bg-gradient-to-r from-[#0064E0] to-[#0082FB] text-white p-10">
+        <div
+            class="relative mb-4 rounded-3xl overflow-hidden shadow-xl border border-white/20 bg-gradient-to-r from-[#0064E0] to-[#0082FB] text-white p-10">
 
             {{-- <a href="{{ route('todolist.index') }}"
                 class="bg-gray-300 w-fit text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400 transition flex items-center gap-1">
@@ -11,7 +12,7 @@
             <div class="relative z-10">
                 <h1 class="text-4xl font-bold mb-2  ">Detail Todo : {{ $list->title }}</h1>
                 <p class="text-white dark:text-gray-400 text-md">
-                     <strong>Tanggal dibuat:</strong> {{ $list->created_at->format('d M Y') }}
+                    <strong>Tanggal dibuat:</strong> {{ $list->created_at->format('d M Y') }}
                 </p>
             </div>
             <div class="absolute right-0 bottom-0 opacity-20 pointer-events-none select-none">
@@ -131,8 +132,7 @@
                                     </a>
                                     <form
                                         action="{{ route('tasks.destroy', ['todolist' => $list->id, 'task' => $task->id]) }}"
-                                        method="POST" style="display:inline;"
-                                        onsubmit="return confirmDelete(event)">
+                                        method="POST" style="display:inline;" onsubmit="return confirmDelete(event)">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
@@ -159,11 +159,11 @@
 @endsection
 
 @push('scripts')
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    let _flashShown = false;
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        let _flashShown = false;
 
-      window.confirmDelete = function(e) {
+        window.confirmDelete = function(e) {
             e.preventDefault();
             const form = e.target.closest('form');
 
@@ -181,155 +181,165 @@
                 }
             });
         }
-   document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('searchInput');
-    const sortSelect = document.getElementById('sort');
-    const dateInput = document.getElementById('date');
-    const tableBody = document.querySelector('#taskTable tbody');
-    const loadingOverlay = document.getElementById('loadingOverlay');
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const sortSelect = document.getElementById('sort');
+            const dateInput = document.getElementById('date');
+            const tableBody = document.querySelector('#taskTable tbody');
+            const loadingOverlay = document.getElementById('loadingOverlay');
 
-    // Simpan semua rows asli saat halaman load
-    let allRows = [];
+            let allRows = [];
 
-    function initializeRows() {
-        allRows = Array.from(tableBody.querySelectorAll('tr')).filter(row => {
-            return !row.querySelector('td[colspan]');
-        });
-    }
+            function initializeRows() {
+                allRows = Array.from(tableBody.querySelectorAll('tr')).filter(row => {
+                    return !row.querySelector('td[colspan]');
+                });
+            }
 
-    initializeRows();
+            initializeRows();
 
-    function showLoading(show) {
-        if (loadingOverlay) {
-            loadingOverlay.classList.toggle('hidden', !show);
-        }
-    }
+            function showLoading(show) {
+                if (loadingOverlay) {
+                    loadingOverlay.classList.toggle('hidden', !show);
+                }
+            }
 
-    function showEmptyState(message = 'Belum ada task yang ditemukan.') {
-        tableBody.innerHTML = `
+            function showEmptyState(message = 'Belum ada task yang ditemukan.') {
+                tableBody.innerHTML = `
             <tr>
                 <td colspan="7" class="text-center py-6 text-gray-500 dark:text-gray-400">
                     ${message}
                 </td>
             </tr>
         `;
-    }
-
-    function parseDateFromText(text) {
-        const bulan = {
-            'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'Mei': 4, 'May': 4, 'Jun': 5,
-            'Jul': 6, 'Agu': 7, 'Aug': 7, 'Sep': 8, 'Okt': 9, 'Oct': 9, 'Nov': 10, 'Des': 11, 'Dec': 11
-        };
-
-        const parts = text.trim().split(' ');
-        if (parts.length === 3) {
-            const day = parseInt(parts[0]);
-            const month = bulan[parts[1]];
-            const year = parseInt(parts[2]);
-
-            if (!isNaN(day) && month !== undefined && !isNaN(year)) {
-                return new Date(year, month, day);
-            }
-        }
-        return null;
-    }
-
-    function formatDate(value) {
-        const d = new Date(value);
-        const day = d.getDate();
-        const month = d.toLocaleDateString('id-ID', { month: 'short' });
-        const year = d.getFullYear();
-        return `${day} ${month} ${year}`;
-    }
-
-    function filterAndSort() {
-        showLoading(true);
-
-        setTimeout(() => {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            const sortOrder = sortSelect.value;
-            const filterDate = dateInput.value;
-
-            // Clone array untuk tidak mengubah original
-            let filteredRows = [...allRows];
-
-            // Filter berdasarkan search term
-            if (searchTerm) {
-                filteredRows = filteredRows.filter(row => {
-                    const title = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
-                    return title.includes(searchTerm);
-                });
             }
 
-            // Filter berdasarkan tanggal
-            if (filterDate) {
-                filteredRows = filteredRows.filter(row => {
-                    const deadlineText = row.querySelector('td:nth-child(5)').textContent.trim();
+            function parseDateFromText(text) {
+                const bulan = {
+                    'Jan': 0,
+                    'Feb': 1,
+                    'Mar': 2,
+                    'Apr': 3,
+                    'Mei': 4,
+                    'May': 4,
+                    'Jun': 5,
+                    'Jul': 6,
+                    'Agu': 7,
+                    'Aug': 7,
+                    'Sep': 8,
+                    'Okt': 9,
+                    'Oct': 9,
+                    'Nov': 10,
+                    'Des': 11,
+                    'Dec': 11
+                };
 
-                    if (deadlineText && deadlineText !== '-') {
-                        const taskDate = parseDateFromText(deadlineText);
-                        const selectedDate = new Date(filterDate);
+                const parts = text.trim().split(' ');
+                if (parts.length === 3) {
+                    const day = parseInt(parts[0]);
+                    const month = bulan[parts[1]];
+                    const year = parseInt(parts[2]);
 
-                        return taskDate &&
-                            taskDate.getDate() === selectedDate.getDate() &&
-                            taskDate.getMonth() === selectedDate.getMonth() &&
-                            taskDate.getFullYear() === selectedDate.getFullYear();
+                    if (!isNaN(day) && month !== undefined && !isNaN(year)) {
+                        return new Date(year, month, day);
                     }
-                    return false;
-                });
-            }
-
-            // Sorting
-            filteredRows.sort((a, b) => {
-                const indexA = parseInt(a.getAttribute('data-original-index') || a.querySelector('td:first-child').textContent);
-                const indexB = parseInt(b.getAttribute('data-original-index') || b.querySelector('td:first-child').textContent);
-                return sortOrder === 'asc' ? indexA - indexB : indexB - indexA;
-            });
-
-            // Clear table body
-            tableBody.innerHTML = '';
-
-            // Tampilkan hasil
-            if (filteredRows.length > 0) {
-                filteredRows.forEach((row, index) => {
-                    // Update nomor urut
-                    row.querySelector('td:first-child').textContent = index + 1;
-                    tableBody.appendChild(row);
-                });
-            } else {
-                let message = 'Belum ada task yang ditemukan.';
-
-                if (searchTerm && !filterDate) {
-                    message = `Tidak ada task dengan judul "${searchTerm}"`;
-                } else if (filterDate && !searchTerm) {
-                    message = `Tidak ada task pada tanggal ${formatDate(filterDate)}`;
-                } else if (searchTerm && filterDate) {
-                    message = `Tidak ada task berjudul "${searchTerm}" pada tanggal ${formatDate(filterDate)}`;
                 }
-
-                showEmptyState(message);
+                return null;
             }
 
-            showLoading(false);
-        }, 300);
-    }
+            function formatDate(value) {
+                const d = new Date(value);
+                const day = d.getDate();
+                const month = d.toLocaleDateString('id-ID', {
+                    month: 'short'
+                });
+                const year = d.getFullYear();
+                return `${day} ${month} ${year}`;
+            }
 
-    // Event listeners
-    searchInput.addEventListener('input', filterAndSort);
-    sortSelect.addEventListener('change', filterAndSort);
-    dateInput.addEventListener('change', filterAndSort);
+            function filterAndSort() {
+                showLoading(true);
 
-    // Simpan index asli untuk sorting
-    allRows.forEach((row, index) => {
-        row.setAttribute('data-original-index', index + 1);
-    });
-});
+                setTimeout(() => {
+                    const searchTerm = searchInput.value.toLowerCase().trim();
+                    const sortOrder = sortSelect.value;
+                    const filterDate = dateInput.value;
 
-    if (typeof Turbo !== 'undefined') {
-        document.addEventListener('turbo:load', () => {
-            _flashShown = false;
+                    let filteredRows = [...allRows];
+
+                    if (searchTerm) {
+                        filteredRows = filteredRows.filter(row => {
+                            const title = row.querySelector('td:nth-child(2)').textContent
+                                .toLowerCase();
+                            return title.includes(searchTerm);
+                        });
+                    }
+
+                    if (filterDate) {
+                        filteredRows = filteredRows.filter(row => {
+                            const deadlineText = row.querySelector('td:nth-child(5)').textContent
+                                .trim();
+
+                            if (deadlineText && deadlineText !== '-') {
+                                const taskDate = parseDateFromText(deadlineText);
+                                const selectedDate = new Date(filterDate);
+
+                                return taskDate &&
+                                    taskDate.getDate() === selectedDate.getDate() &&
+                                    taskDate.getMonth() === selectedDate.getMonth() &&
+                                    taskDate.getFullYear() === selectedDate.getFullYear();
+                            }
+                            return false;
+                        });
+                    }
+
+                    filteredRows.sort((a, b) => {
+                        const indexA = parseInt(a.getAttribute('data-original-index') || a
+                            .querySelector('td:first-child').textContent);
+                        const indexB = parseInt(b.getAttribute('data-original-index') || b
+                            .querySelector('td:first-child').textContent);
+                        return sortOrder === 'asc' ? indexA - indexB : indexB - indexA;
+                    });
+
+                    tableBody.innerHTML = '';
+
+                    if (filteredRows.length > 0) {
+                        filteredRows.forEach((row, index) => {
+                            row.querySelector('td:first-child').textContent = index + 1;
+                            tableBody.appendChild(row);
+                        });
+                    } else {
+                        let message = 'Belum ada task yang ditemukan.';
+
+                        if (searchTerm && !filterDate) {
+                            message = `Tidak ada task dengan judul "${searchTerm}"`;
+                        } else if (filterDate && !searchTerm) {
+                            message = `Tidak ada task pada tanggal ${formatDate(filterDate)}`;
+                        } else if (searchTerm && filterDate) {
+                            message =
+                                `Tidak ada task berjudul "${searchTerm}" pada tanggal ${formatDate(filterDate)}`;
+                        }
+
+                        showEmptyState(message);
+                    }
+
+                    showLoading(false);
+                }, 300);
+            }
+
+            searchInput.addEventListener('input', filterAndSort);
+            sortSelect.addEventListener('change', filterAndSort);
+            dateInput.addEventListener('change', filterAndSort);
+
+            allRows.forEach((row, index) => {
+                row.setAttribute('data-original-index', index + 1);
+            });
         });
-    }
-</script>
 
+        if (typeof Turbo !== 'undefined') {
+            document.addEventListener('turbo:load', () => {
+                _flashShown = false;
+            });
+        }
+    </script>
 @endpush

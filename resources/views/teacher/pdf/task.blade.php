@@ -24,7 +24,7 @@
 
         <b>Prioritas:</b> {{ $task->priority->name ?? 'Tidak ada' }}<br>
         <b>Status:</b> {{ $task->status->name ?? 'Belum' }}<br>
-        <b>Jumlah Siswa:</b> {{ $task->detail->assigned_user_count ?? 0 }}
+        <b>Jumlah User:</b> {{ $task->detail->assigned_user_count ?? 0 }}
     </div>
 
     @if ($task->detail?->long_description)
@@ -40,7 +40,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Siswa</th>
+                    <th>Nama</th>
                     <th>File</th>
                     <th>Status</th>
                     <th>Tanggal</th>

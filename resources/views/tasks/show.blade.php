@@ -151,10 +151,10 @@
                             </div>
                             <div class="flex-1 min-w-0">
                                 <p class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">
-                                    Jumlah Siswa
+                                    Jumlah User
                                 </p>
                                 <p class="font-semibold text-gray-900 dark:text-white truncate">
-                                    {{ $task->detail?->assigned_user_count ?? 0 }} siswa
+                                    {{ $task->detail?->assigned_user_count ?? 0 }} User
                                 </p>
                             </div>
                         </div>
@@ -204,7 +204,7 @@
                     <h2 class="text-xl font-bold text-gray-900 dark:text-white">Daftar Pengumpulan</h2>
 
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                        <input type="text" id="searchInput" placeholder="Cari siswa..."
+                        <input type="text" id="searchInput" placeholder="Cari ..."
                             class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition">
 
                         <select id="statusFilter"

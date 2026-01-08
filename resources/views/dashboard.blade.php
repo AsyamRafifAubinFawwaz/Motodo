@@ -42,7 +42,7 @@
                 <div class="bg-white dark:bg-[#1C2B33] rounded-2xl shadow p-6 hover:shadow-md transition">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Jumlah Siswa</h2>
+                            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Jumlah Tim</h2>
                             <p class="text-3xl font-bold text-blue-600 mt-2">{{ $jumlahSiswa ?? 0 }}</p>
                         </div>
                         {{ svg('ri-user-3-line')->class('w-10 h-10 text-blue-600') }}
@@ -62,7 +62,7 @@
                 <div class="bg-white dark:bg-[#1C2B33] rounded-2xl shadow p-6 hover:shadow-md transition">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Tugas Dikirim (Siswa)</h2>
+                            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Tugas Dikirim (Tim)</h2>
                             <p class="text-3xl font-bold text-green-500 mt-2">{{ $tugasDikirim ?? 0 }}</p>
                         </div>
                         {{ svg('ri-mail-send-line')->class('w-10 h-10 text-green-500') }}

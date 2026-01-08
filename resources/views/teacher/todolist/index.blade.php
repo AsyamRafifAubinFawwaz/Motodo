@@ -2,11 +2,12 @@
 
 @section('content')
     <section class="p-6 mt-2">
-       <div class="relative mb-16 rounded-3xl overflow-hidden shadow-xl border border-white/20 bg-gradient-to-r from-[#0064E0] to-[#0082FB] text-white p-10">
+        <div
+            class="relative mb-16 rounded-3xl overflow-hidden shadow-xl border border-white/20 bg-gradient-to-r from-[#0064E0] to-[#0082FB] text-white p-10">
             <div class="relative z-10">
-                <h1 class="text-4xl font-black mb-2 tracking-tight">Daftar Tugas Saya</h1>
+                <h1 class="text-4xl font-black mb-2 tracking-tight">Daftar Tugas</h1>
                 <p class="text-white dark:text-gray-400 text-md">
-                    Kelola dan kerjakan semua tugas yang diberikan oleh guru.
+                    Kelola tugas
                 </p>
             </div>
             <div class="absolute right-0 bottom-0 opacity-20 pointer-events-none select-none">
@@ -33,14 +34,14 @@
 
             </div>
             <div class="flex items-start flex-col gap-2">
-            <label for="date" class="text-gray-600 dark:text-gray-300 font-medium text-sm">TANGGAL</label>
-            <input type="date" id="date" name="date" value="{{ request('date') }}"
-                class="border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0082fb] dark:bg-gray-800 dark:text-gray-200 w-full">
-        </div>
-         <button id="openModalBtn"
-        class="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition">
-        + Tambah Todo
-    </button>
+                <label for="date" class="text-gray-600 dark:text-gray-300 font-medium text-sm">TANGGAL</label>
+                <input type="date" id="date" name="date" value="{{ request('date') }}"
+                    class="border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#0082fb] dark:bg-gray-800 dark:text-gray-200 w-full">
+            </div>
+            <button id="openModalBtn"
+                class="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition">
+                + Tambah Todo
+            </button>
         </div>
 
         <div
@@ -148,100 +149,100 @@
             </table>
         </div>
     </section>
-   <div id="editModal" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-96 p-6 relative">
-        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Edit Todo</h2>
+    <div id="editModal" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-96 p-6 relative">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Edit Todo</h2>
 
-        <form id="editTodoForm" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
+            <form id="editTodoForm" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
 
-            <div class="mb-4">
-                <label for="edit_title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Judul
-                </label>
-                <input type="text" id="edit_title" name="title" required
-                    class="w-full mt-2 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400">
-            </div>
+                <div class="mb-4">
+                    <label for="edit_title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Judul
+                    </label>
+                    <input type="text" id="edit_title" name="title" required
+                        class="w-full mt-2 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400">
+                </div>
 
-            <div class="mb-4">
-                <label for="edit_image" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Gambar (Opsional)
-                </label>
-                <input type="file" id="edit_image" name="image" accept="image/*"
-                    class="w-full mt-2 px-3 py-2 border rounded-lg cursor-pointer dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400">
-                <img id="edit_image_preview" src="" alt="Preview" class="mt-3 rounded-lg hidden w-full object-cover max-h-40">
-            </div>
+                <div class="mb-4">
+                    <label for="edit_image" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Gambar (Opsional)
+                    </label>
+                    <input type="file" id="edit_image" name="image" accept="image/*"
+                        class="w-full mt-2 px-3 py-2 border rounded-lg cursor-pointer dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400">
+                    <img id="edit_image_preview" src="" alt="Preview"
+                        class="mt-3 rounded-lg hidden w-full object-cover max-h-40">
+                </div>
 
-            <div class="mb-4">
-                <label for="edit_description"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Deskripsi
-                </label>
-                <textarea id="edit_description" name="description" rows="3"
-                    class="w-full mt-2 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400"></textarea>
-            </div>
+                <div class="mb-4">
+                    <label for="edit_description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Deskripsi
+                    </label>
+                    <textarea id="edit_description" name="description" rows="3"
+                        class="w-full mt-2 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400"></textarea>
+                </div>
 
-            <div class="flex justify-end gap-2">
-                <button type="button" onclick="closeEditModal()"
-                    class="px-4 py-2 rounded-lg bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200">
-                    Batal
-                </button>
-                <button type="submit"
-                    class="px-4 py-2 cursor-pointer rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium">
-                    Simpan
-                </button>
-            </div>
-        </form>
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="closeEditModal()"
+                        class="px-4 py-2 rounded-lg bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200">
+                        Batal
+                    </button>
+                    <button type="submit"
+                        class="px-4 py-2 cursor-pointer rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium">
+                        Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
 
-  <div id="addModal" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-96 p-6 relative">
-        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Tambah Todo Baru</h2>
+    <div id="addModal" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-96 p-6 relative">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Tambah Todo Baru</h2>
 
-        <form  data-turbo="false" action="{{ route('todolist.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+            <form data-turbo="false" action="{{ route('todolist.store') }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
 
-            <div class="mb-4">
-                <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Judul
-                </label>
-                <input type="text" id="title" name="title" required
-                    class="w-full mt-2 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400">
-            </div>
+                <div class="mb-4">
+                    <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Judul
+                    </label>
+                    <input type="text" id="title" name="title" required
+                        class="w-full mt-2 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400">
+                </div>
 
-            <div class="mb-4">
-                <label for="image" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Gambar (Opsional)
-                </label>
-                <input type="file" id="image" name="image" accept="image/*"
-                    class="w-full mt-2 px-3 py-2 border rounded-lg cursor-pointer dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400">
-            </div>
+                <div class="mb-4">
+                    <label for="image" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Gambar (Opsional)
+                    </label>
+                    <input type="file" id="image" name="image" accept="image/*"
+                        class="w-full mt-2 px-3 py-2 border rounded-lg cursor-pointer dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400">
+                </div>
 
-            <div class="mb-4">
-                <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Deskripsi (Opsional)
-                </label>
-                <textarea id="description" name="description" rows="3"
-                    class="w-full mt-2 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400"></textarea>
-            </div>
+                <div class="mb-4">
+                    <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Deskripsi (Opsional)
+                    </label>
+                    <textarea id="description" name="description" rows="3"
+                        class="w-full mt-2 px-3 py-2 border rounded-lg dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-400"></textarea>
+                </div>
 
-            <div class="flex justify-end gap-2">
-                <button type="button" id="closeModalBtn"
-                    class="px-4 py-2 rounded-lg bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200">
-                    Batal
-                </button>
-                <button type="submit"
-                    class="px-4 py-2 cursor-pointer rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium">
-                    Simpan
-                </button>
-            </div>
-        </form>
+                <div class="flex justify-end gap-2">
+                    <button type="button" id="closeModalBtn"
+                        class="px-4 py-2 rounded-lg bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200">
+                        Batal
+                    </button>
+                    <button type="submit"
+                        class="px-4 py-2 cursor-pointer rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium">
+                        Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
 @endsection
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -327,7 +328,7 @@
             }
         });
 
-      
+
 
         function openEditModal(id, title, desc) {
             const modal = document.getElementById('editModal');
@@ -348,30 +349,31 @@
         }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('searchInput');
-    const sortSelect = document.getElementById('sort');
-    const dateInput = document.getElementById('date');
-    const tableBody = document.querySelector('#todoTable tbody');
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const sortSelect = document.getElementById('sort');
+            const dateInput = document.getElementById('date');
+            const tableBody = document.querySelector('#todoTable tbody');
 
-    // Simpan semua rows asli
-    let allRows = [];
+            let allRows = [];
 
-    function initializeRows() {
-        allRows = Array.from(tableBody.querySelectorAll('tr')).filter(row => {
-            return !row.querySelector('td[colspan]');
-        });
+            function initializeRows() {
+                allRows = Array.from(tableBody.querySelectorAll('tr')).filter(row => {
+                    return !row.querySelector('td[colspan]');
+                }).map(row => {
+                    return {
+                        element: row.cloneNode(true),
+                        title: row.querySelector('td:nth-child(2) span')?.textContent.trim() || '',
+                        dateText: row.querySelector('td:nth-child(3) span')?.textContent.trim() || '',
+                        originalIndex: Array.from(tableBody.querySelectorAll('tr')).indexOf(row)
+                    };
+                });
+            }
 
-        // Simpan index asli untuk sorting
-        allRows.forEach((row, index) => {
-            row.setAttribute('data-original-index', index + 1);
-        });
-    }
+            initializeRows();
 
-    initializeRows();
-
-    function showEmptyState(message = 'Belum ada todo list') {
-        tableBody.innerHTML = `
+            function showEmptyState(message = 'Belum ada todo list') {
+                tableBody.innerHTML = `
             <tr>
                 <td colspan="4" class="px-6 py-12 text-center">
                     <div class="flex flex-col items-center justify-center space-y-3">
@@ -386,128 +388,152 @@ document.addEventListener('DOMContentLoaded', () => {
                 </td>
             </tr>
         `;
-    }
-
-    function parseDateFromText(text) {
-        const bulan = {
-            'Jan': 0, 'Januari': 0,
-            'Feb': 1, 'Februari': 1,
-            'Mar': 2, 'Maret': 2,
-            'Apr': 3, 'April': 3,
-            'Mei': 4, 'May': 4,
-            'Jun': 5, 'Juni': 5,
-            'Jul': 6, 'Juli': 6,
-            'Agu': 7, 'Agustus': 7, 'Aug': 7,
-            'Sep': 8, 'September': 8,
-            'Okt': 9, 'Oktober': 9, 'Oct': 9,
-            'Nov': 10, 'November': 10,
-            'Des': 11, 'Desember': 11, 'Dec': 11
-        };
-
-        const parts = text.trim().split(' ');
-        if (parts.length === 3) {
-            const day = parseInt(parts[0]);
-            const month = bulan[parts[1]];
-            const year = parseInt(parts[2]);
-
-            if (!isNaN(day) && month !== undefined && !isNaN(year)) {
-                return new Date(year, month, day);
             }
-        }
-        return null;
-    }
 
-    function formatDate(value) {
-        const d = new Date(value);
-        const day = d.getDate();
-        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-        const month = monthNames[d.getMonth()];
-        const year = d.getFullYear();
-        return `${day} ${month} ${year}`;
-    }
+            function parseDateFromText(text) {
+                const bulan = {
+                    'Jan': 0,
+                    'Januari': 0,
+                    'Feb': 1,
+                    'Februari': 1,
+                    'Mar': 2,
+                    'Maret': 2,
+                    'Apr': 3,
+                    'April': 3,
+                    'Mei': 4,
+                    'May': 4,
+                    'Jun': 5,
+                    'Juni': 5,
+                    'Jul': 6,
+                    'Juli': 6,
+                    'Agu': 7,
+                    'Agustus': 7,
+                    'Aug': 7,
+                    'Sep': 8,
+                    'September': 8,
+                    'Okt': 9,
+                    'Oktober': 9,
+                    'Oct': 9,
+                    'Nov': 10,
+                    'November': 10,
+                    'Des': 11,
+                    'Desember': 11,
+                    'Dec': 11
+                };
 
-    function filterAndSort() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        const sortOrder = sortSelect.value;
-        const filterDate = dateInput.value;
+                const parts = text.trim().split(' ');
+                if (parts.length === 3) {
+                    const day = parseInt(parts[0]);
+                    const month = bulan[parts[1]];
+                    const year = parseInt(parts[2]);
 
-        // Clone array
-        let filteredRows = [...allRows];
-
-        // Filter berdasarkan search term (judul)
-        if (searchTerm) {
-            filteredRows = filteredRows.filter(row => {
-                const titleCell = row.querySelector('td:nth-child(2) span');
-                if (titleCell) {
-                    const title = titleCell.textContent.toLowerCase();
-                    return title.includes(searchTerm);
+                    if (!isNaN(day) && month !== undefined && !isNaN(year)) {
+                        return new Date(year, month, day);
+                    }
                 }
-                return false;
-            });
-        }
+                return null;
+            }
 
-        // Filter berdasarkan tanggal dibuat
-        if (filterDate) {
-            filteredRows = filteredRows.filter(row => {
-                const dateCell = row.querySelector('td:nth-child(3) span');
-                if (dateCell) {
-                    const dateText = dateCell.textContent.trim();
-                    const todoDate = parseDateFromText(dateText);
-                    const selectedDate = new Date(filterDate);
+            function formatDate(value) {
+                const d = new Date(value);
+                const day = d.getDate();
+                const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov',
+                    'Des'
+                ];
+                const month = monthNames[d.getMonth()];
+                const year = d.getFullYear();
+                return `${day} ${month} ${year}`;
+            }
 
-                    return todoDate &&
-                        todoDate.getDate() === selectedDate.getDate() &&
-                        todoDate.getMonth() === selectedDate.getMonth() &&
-                        todoDate.getFullYear() === selectedDate.getFullYear();
+            function filterAndSort() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const sortOrder = sortSelect.value;
+                const filterDate = dateInput.value;
+
+                let filteredRows = [...allRows];
+
+                if (searchTerm) {
+                    filteredRows = filteredRows.filter(row => {
+                        return row.title.toLowerCase().includes(searchTerm);
+                    });
                 }
-                return false;
-            });
-        }
 
-        // Sorting berdasarkan index asli (urutan dibuat)
-        filteredRows.sort((a, b) => {
-            const indexA = parseInt(a.getAttribute('data-original-index'));
-            const indexB = parseInt(b.getAttribute('data-original-index'));
-            return sortOrder === 'asc' ? indexA - indexB : indexB - indexA;
+                if (filterDate) {
+                    filteredRows = filteredRows.filter(row => {
+                        const todoDate = parseDateFromText(row.dateText);
+                        const selectedDate = new Date(filterDate);
+
+                        return todoDate &&
+                            todoDate.getDate() === selectedDate.getDate() &&
+                            todoDate.getMonth() === selectedDate.getMonth() &&
+                            todoDate.getFullYear() === selectedDate.getFullYear();
+                    });
+                }
+
+                filteredRows.sort((a, b) => {
+                    return sortOrder === 'asc' ?
+                        a.originalIndex - b.originalIndex :
+                        b.originalIndex - a.originalIndex;
+                });
+
+                tableBody.innerHTML = '';
+
+                if (filteredRows.length > 0) {
+                    filteredRows.forEach((rowData, index) => {
+                        const row = rowData.element.cloneNode(true);
+
+                        const numberCell = row.querySelector('td:first-child div');
+                        if (numberCell) {
+                            numberCell.textContent = index + 1;
+                        }
+
+                        const editBtn = row.querySelector('button[onclick^="openEditModal"]');
+                        const deleteForm = row.querySelector(
+                        'form[onsubmit="return confirmDelete(event)"]');
+
+                        if (editBtn) {
+                            const onclickAttr = editBtn.getAttribute('onclick');
+                            editBtn.removeAttribute('onclick');
+                            editBtn.addEventListener('click', function() {
+                                eval(onclickAttr);
+                            });
+                        }
+
+                        if (deleteForm) {
+                            deleteForm.addEventListener('submit', function(e) {
+                                confirmDelete(e);
+                            });
+                        }
+
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    let message = 'Belum ada todo list';
+
+                    if (searchTerm && !filterDate) {
+                        message = `Tidak ada todo dengan judul "${searchTerm}"`;
+                    } else if (filterDate && !searchTerm) {
+                        message = `Tidak ada todo pada tanggal ${formatDate(filterDate)}`;
+                    } else if (searchTerm && filterDate) {
+                        message = `Tidak ada todo berjudul "${searchTerm}" pada tanggal ${formatDate(filterDate)}`;
+                    }
+
+                    showEmptyState(message);
+                }
+            }
+
+            let searchTimeout;
+            searchInput.addEventListener('input', () => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(filterAndSort, 300);
+            });
+
+            sortSelect.addEventListener('change', filterAndSort);
+            dateInput.addEventListener('change', filterAndSort);
+
+            if (window.Turbo) {
+                document.addEventListener('turbo:load', initializeRows);
+            }
         });
-
-        // Clear table body
-        tableBody.innerHTML = '';
-
-        // Tampilkan hasil
-        if (filteredRows.length > 0) {
-            filteredRows.forEach((row, index) => {
-                // Update nomor urut di kolom pertama
-                const numberCell = row.querySelector('td:first-child div');
-                if (numberCell) {
-                    numberCell.textContent = index + 1;
-                }
-                tableBody.appendChild(row);
-            });
-        } else {
-            let message = 'Belum ada todo list';
-
-            if (searchTerm && !filterDate) {
-                message = `Tidak ada todo dengan judul "${searchTerm}"`;
-            } else if (filterDate && !searchTerm) {
-                message = `Tidak ada todo pada tanggal ${formatDate(filterDate)}`;
-            } else if (searchTerm && filterDate) {
-                message = `Tidak ada todo berjudul "${searchTerm}" pada tanggal ${formatDate(filterDate)}`;
-            }
-
-            showEmptyState(message);
-        }
-    }
-
-    // Event listeners dengan debounce untuk search
-    let searchTimeout;
-    searchInput.addEventListener('input', () => {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(filterAndSort, 300);
-    });
-
-    sortSelect.addEventListener('change', filterAndSort);
-    dateInput.addEventListener('change', filterAndSort);
-});
     </script>
 @endpush

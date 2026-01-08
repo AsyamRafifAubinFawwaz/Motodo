@@ -18,7 +18,7 @@ use App\Http\Controllers\UserTaskController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', fn() => view('auth.login'));
+Route::get('/', fn() => view('Landing.index'))->name('landing');
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
@@ -28,6 +28,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile/edit', [UserController::class, 'editSelf'])->name('profile.edit');
+    Route::post('/profile/update', [UserController::class, 'updateSelf'])->name('profile.update');
 
     Route::middleware(['role:Admin'])->group(function () {
         Route::resource('todolist', TodoListController::class);

@@ -18,6 +18,7 @@
                 <span class="font-medium sidebar-text whitespace-nowrap">Dashboard</span>
             </a>
 
+
             @if (auth()->user()->role->name === 'Admin')
                 <a href="{{ route('todolist.index') }}"
                     class="flex items-center gap-4 px-4 py-3 rounded-xl text-gray-700 hover:bg-blue-50 transition-all duration-200 group
@@ -36,7 +37,7 @@
                     <div class="w-5 h-5 flex items-center justify-center flex-shrink-0">
                         {{ svg('hugeicons-students', 'w-5 h-5') }}
                     </div>
-                    <span class="font-medium sidebar-text whitespace-nowrap">Kelola Tugas Siswa</span>
+                    <span class="font-medium sidebar-text whitespace-nowrap">Kelola Tugas Tim</span>
                 </a>
 
                 <a href="{{ route('teacher.settings.users.index') }}"
@@ -47,7 +48,7 @@
                         {{-- {{ svg('heroheroicon-c-user-group', 'w-5 h-5') }} --}}
                         {{ svg('heroicon-o-user-group', 'w-5 h-5') }}
                     </div>
-                    <span class="font-medium sidebar-text whitespace-nowrap">Settings  Siswa</span>
+                    <span class="font-medium sidebar-text whitespace-nowrap">Settings  User</span>
                 </a>
             @endif
 
@@ -77,6 +78,15 @@
                 </a>
             @endif
 
+            <a href="{{ route('profile.edit') }}"
+                   class="flex items-center gap-4 px-4 py-3 rounded-xl text-gray-700 hover:bg-blue-50 transition-all duration-200 group
+                   {{ request()->routeIs('profile.edit') ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-500/30' : '' }}
+                   dark:text-gray-300 dark:hover:bg-[#2C3E48]">
+                   <div class="w-5 h-5 flex items-center justify-center flex-shrink-0">
+                       {{ svg('ri-user-line', 'w-5 h-5') }}
+                   </div>
+                   <span class="font-medium sidebar-text whitespace-nowrap">Profile</span>
+               </a>
             {{-- 🔹 Tombol Logout --}}
             <div class="pt-4 mt-4">
                 <form method="POST" action="{{ route('logout') }}">
@@ -91,7 +101,6 @@
                 </form>
             </div>
         </div>
-
     </div>
 </aside>
 
